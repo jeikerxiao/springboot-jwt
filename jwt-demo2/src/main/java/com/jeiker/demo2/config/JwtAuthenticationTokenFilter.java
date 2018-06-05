@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -18,6 +19,7 @@ import java.io.IOException;
  * Description: Jwt Token 过滤器
  * Created by jeikerxiao on 2018/6/5 上午10:06
  */
+@Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     private UserDetailsService userDetailsService;
