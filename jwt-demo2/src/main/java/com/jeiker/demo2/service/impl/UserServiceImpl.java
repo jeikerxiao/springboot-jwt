@@ -4,6 +4,7 @@ import com.jeiker.demo2.config.JwtTokenUtil;
 import com.jeiker.demo2.dao.UserRepository;
 import com.jeiker.demo2.model.User;
 import com.jeiker.demo2.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +23,7 @@ import java.util.List;
  * Created by jeikerxiao on 2018/6/5 下午1:38
  */
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     private AuthenticationManager authenticationManager;
@@ -41,6 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String login(String username, String password) {
         UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
+        log.info("login UsernamePasswordToken: {}", upToken);
         Authentication authentication = authenticationManager.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
